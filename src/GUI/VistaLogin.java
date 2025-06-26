@@ -60,7 +60,7 @@ int xMouse, yMouse;
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 170, 30));
 
         jButton1.setBackground(new java.awt.Color(228, 17, 26));
-        jButton1.setFont(new java.awt.Font("Sans Serif Collection", 0, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Iniciar sesion");
         jButton1.setBorder(null);
@@ -79,7 +79,7 @@ int xMouse, yMouse;
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Cruz Roja");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
 
         jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 370, 350));
 

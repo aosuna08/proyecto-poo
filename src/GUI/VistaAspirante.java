@@ -34,7 +34,22 @@ public class VistaAspirante extends javax.swing.JFrame {
         if (conn != null) {
             try {
                 Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM aspirante");
+                ResultSet rs = stmt.executeQuery(
+                    "SELECT " +
+                    "    aspirante.numeroInternoJuventud, " +
+                    "    aspirante.apellidoPaterno, " +
+                    "    aspirante.apellidoMaterno, " +
+                    "    aspirante.nombre, " +
+                    "    aspirante.fechaNacimiento, " +
+                    "    aspirante.CURP, " +
+                    "    aspirante.fechaIngreso, " +
+                    "    aspirante.foto, " +
+                    "    nivel.categoria AS categoriaNivel, " +
+                    "    seccion.categoria AS categoriaSeccion " +
+                    "FROM aspirante " +
+                    "JOIN nivel ON aspirante.Nivel_idNivel = nivel.idNivel " +
+                    "JOIN seccion ON aspirante.Seccion_idSeccion = seccion.idSeccion"
+                );
 
                 while (rs.next()) {
                     modelo.addRow(new Object[] {
@@ -46,8 +61,8 @@ public class VistaAspirante extends javax.swing.JFrame {
                         rs.getString("CURP"),
                         rs.getString("fechaIngreso"),
                         rs.getString("foto"),
-                        rs.getString("Nivel_idNivel"),
-                        rs.getString("Seccion_idSeccion"),
+                        rs.getString("categoriaNivel"),
+                        rs.getString("categoriaSeccion"),
                     });
                 }
 

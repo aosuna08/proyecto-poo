@@ -7,8 +7,8 @@ public class Main {
    public static void main(String[] args) {
         Connection conn = Conexion.getConnection();
         
-        /*
-        COMPROBAR CONEXION
+        
+        /*COMPROBAR CONEXION
         if (conn != null) {
             System.out.println("¡Conexión exitosa a la base de datos!");
         } else {
@@ -18,5 +18,6 @@ public class Main {
         
         // Mostrar datos
         new VistaLogin().setVisible(true);
+       
     }
 }

@@ -24,7 +24,7 @@ public class VistaAspirante extends javax.swing.JFrame {
         modelo.addColumn("FECHA DE NACIMIENTO");
         modelo.addColumn("CURP");
         modelo.addColumn("FECHA DE INGRESO");
-        modelo.addColumn("FOTO");
+        // modelo.addColumn("FOTO");
         modelo.addColumn("NIVEL");
         modelo.addColumn("SECCION");
 
@@ -44,7 +44,7 @@ public class VistaAspirante extends javax.swing.JFrame {
                     "    aspirante.fechaNacimiento, " +
                     "    aspirante.CURP, " +
                     "    aspirante.fechaIngreso, " +
-                    "    aspirante.foto, " +
+                //  "    aspirante.foto, " +
                     "    nivel.categoria AS categoriaNivel, " +
                     "    seccion.categoria AS categoriaSeccion " +
                     "FROM aspirante " +
@@ -61,7 +61,7 @@ public class VistaAspirante extends javax.swing.JFrame {
                         rs.getString("fechaNacimiento"),
                         rs.getString("CURP"),
                         rs.getString("fechaIngreso"),
-                        rs.getString("foto"),
+                    //  rs.getString("foto"),
                         rs.getString("categoriaNivel"),
                         rs.getString("categoriaSeccion"),
                     });

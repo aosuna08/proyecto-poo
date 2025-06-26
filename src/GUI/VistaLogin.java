@@ -112,16 +112,16 @@ int xMouse, yMouse;
         // PROTOTIPO DE NAVEGACION DE VENTANAS
        // this.dispose();
        // new Menu().setVisible(true);
-       String usuario=txtUsuarioLogin.getText();
-       String pass=txtPasswordLogin.getText();
+       String usuario = txtUsuarioLogin.getText();
+       String pass = txtPasswordLogin.getText();
        //validar
        if(!usuario.equals("")||!pass.equals("")){
            //contiene datos
            try{
-               PreparedStatement ps=(PreparedStatement)cn.prepareStatement("SELECT * FROM usuarios WHERE usuario = '"+usuario+"' AND password = '"+pass+"'");
-               ResultSet rs=ps.executeQuery();
+               PreparedStatement ps=(PreparedStatement)cn.prepareStatement("SELECT * FROM usuario WHERE usuario = '"+ usuario +"' AND contrasenia = '"+ pass +"'");
+               ResultSet rs = ps.executeQuery();
                if(rs.next()){
-                   String usuarioN=rs.getString("usuario");
+                   String usuarioN = rs.getString("usuario");
                    if(usuario.equalsIgnoreCase("admin")){
                        Menu m=new Menu();
                        dispose();

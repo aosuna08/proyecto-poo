@@ -8,7 +8,7 @@ public class Conexion {
     Connection cn;
     private static final String url = "jdbc:mysql://localhost:3306/db";
     private static final String usuario = "root"; // CAMBIAR CUANDO ESTEN DEFINIDOS LOS USUARIOS
-    private static final String contrasenia = "2300"; // CAMBIAR TAMBIEN
+    private static final String contrasenia = "2023030588"; // CAMBIAR TAMBIEN
     
     public Connection ConectarBD(){
         try {

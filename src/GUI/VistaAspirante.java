@@ -80,11 +80,6 @@ public class VistaAspirante extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaAspirantes = new javax.swing.JTable();
-        top = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
 
         label1.setText("label1");
@@ -127,12 +122,12 @@ public class VistaAspirante extends javax.swing.JFrame {
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("TALLERES");
-        top2.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 130, 60));
+        top2.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 130, 60));
 
         jButton10.setBackground(new java.awt.Color(153, 0, 0));
         jButton10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton10.setText("ASPIRANTE");
-        top2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 130, 60));
+        top2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 130, 60));
 
         jButton11.setBackground(new java.awt.Color(255, 51, 51));
         jButton11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -143,13 +138,13 @@ public class VistaAspirante extends javax.swing.JFrame {
                 jButton11ActionPerformed(evt);
             }
         });
-        top2.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 130, 60));
+        top2.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 130, 60));
 
         jButton12.setBackground(new java.awt.Color(255, 51, 51));
         jButton12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton12.setForeground(new java.awt.Color(255, 255, 255));
         jButton12.setText("INFORMES");
-        top2.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 130, 60));
+        top2.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 130, 60));
 
         background1.add(top2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 500));
 
@@ -173,32 +168,6 @@ public class VistaAspirante extends javax.swing.JFrame {
         background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 620, 370));
 
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, -1));
-
-        top.setBackground(new java.awt.Color(16, 40, 68));
-        top.setForeground(new java.awt.Color(16, 40, 68));
-        top.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("MENÚ");
-        top.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(349, 21, -1, -1));
-
-        jButton3.setBackground(new java.awt.Color(228, 17, 26));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton3.setText("TALLERES");
-        top.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 130, 60));
-
-        jButton4.setBackground(new java.awt.Color(228, 17, 26));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton4.setText("MODIFICAR");
-        top.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 130, 60));
-
-        jButton5.setBackground(new java.awt.Color(228, 17, 26));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton5.setText("ASPIRANTE");
-        top.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 130, 60));
-
-        getContentPane().add(top, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 500));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -265,19 +234,14 @@ public class VistaAspirante extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
     private javax.swing.JTable tablaAspirantes;
-    private javax.swing.JPanel top;
     private javax.swing.JPanel top1;
     private javax.swing.JPanel top2;
     // End of variables declaration//GEN-END:variables

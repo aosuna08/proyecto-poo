@@ -8,12 +8,12 @@ package GUI;
  *
  * @author feco2
  */
-public class AgregarAspirante extends javax.swing.JFrame {
+public class VistaTaller extends javax.swing.JFrame {
 
     /**
      * Creates new form Agregar
      */
-    public AgregarAspirante() {
+    public VistaTaller() {
         initComponents();
     }
 
@@ -48,6 +48,7 @@ public class AgregarAspirante extends javax.swing.JFrame {
         label1.setText("label1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(13, 33, 57));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         background.setBackground(new java.awt.Color(13, 33, 57));
@@ -81,33 +82,38 @@ public class AgregarAspirante extends javax.swing.JFrame {
         jLabel10.setText("CRUZ ROJA");
         top2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
 
-        jButton9.setBackground(new java.awt.Color(255, 51, 51));
+        jButton9.setBackground(new java.awt.Color(153, 0, 0));
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("TALLERES");
         top2.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 130, 60));
 
-        jButton10.setBackground(new java.awt.Color(153, 0, 0));
+        jButton10.setBackground(new java.awt.Color(255, 51, 51));
         jButton10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton10.setForeground(new java.awt.Color(255, 255, 255));
         jButton10.setText("ASPIRANTE");
         top2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 130, 60));
 
         jButton11.setBackground(new java.awt.Color(255, 51, 51));
         jButton11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 255, 255));
-        jButton11.setText("SALIR");
+        jButton11.setText("INFORMES");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
             }
         });
-        top2.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 130, 60));
+        top2.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 130, 60));
 
         jButton12.setBackground(new java.awt.Color(255, 51, 51));
         jButton12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton12.setForeground(new java.awt.Color(255, 255, 255));
-        jButton12.setText("INFORMES");
-        top2.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 130, 60));
+        jButton12.setText("SALIR");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        top2.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 130, 60));
 
         background1.add(top2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 500));
 
@@ -163,6 +169,10 @@ public class AgregarAspirante extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -180,21 +190,51 @@ public class AgregarAspirante extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarAspirante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaTaller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarAspirante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaTaller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarAspirante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaTaller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarAspirante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaTaller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AgregarAspirante().setVisible(true);
+                new VistaTaller().setVisible(true);
             }
         });
     }

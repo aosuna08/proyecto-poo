@@ -1,5 +1,6 @@
 package App;
 
+import GUI.VistaLogin;
 import java.sql.Connection;
 
 public class Main {
@@ -14,5 +15,8 @@ public class Main {
             System.out.println("No se pudo establecer la conexion.");
         }
         */
+        
+        // Mostrar datos
+        new VistaLogin().setVisible(true);
     }
 }

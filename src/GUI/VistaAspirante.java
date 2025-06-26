@@ -1,22 +1,62 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package GUI;
 
-/**
- *
- * @author feco2
- */
-public class AgregarTaller extends javax.swing.JFrame {
+import App.Conexion;
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
 
+public class VistaAspirante extends javax.swing.JFrame {
     /**
      * Creates new form Agregar
      */
-    public AgregarTaller() {
+    public VistaAspirante() {
         initComponents();
+        mostrarAspirantes();
     }
 
+    // LOGICA PARA MOSTRAR TABLA ASPIRANTE, * NO MODIFICAR *
+    // FALTA MOSTRAR NOMBRE DE SECCION Y NIVEL
+    private void mostrarAspirantes() {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("NO. INTERNO JUVENTUD");
+        modelo.addColumn("APELLIDO PATERNO");
+        modelo.addColumn("APELLIDO MATERNO");
+        modelo.addColumn("NOMBRE");
+        modelo.addColumn("FECHA DE NACIMIENTO");
+        modelo.addColumn("CURP");
+        modelo.addColumn("FECHA DE INGRESO");
+        modelo.addColumn("FOTO");
+        modelo.addColumn("NIVEL");
+        modelo.addColumn("SECCION");
+
+        tablaAspirantes.setModel(modelo);
+
+        Connection conn = Conexion.getConnection();
+        if (conn != null) {
+            try {
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM aspirante");
+
+                while (rs.next()) {
+                    modelo.addRow(new Object[] {
+                        rs.getString("numeroInternoJuventud"),
+                        rs.getString("apellidoPaterno"),
+                        rs.getString("apellidoMaterno"),
+                        rs.getString("nombre"),
+                        rs.getString("fechaNacimiento"),
+                        rs.getString("CURP"),
+                        rs.getString("fechaIngreso"),
+                        rs.getString("foto"),
+                        rs.getString("Nivel_idNivel"),
+                        rs.getString("Seccion_idSeccion"),
+                    });
+                }
+
+            } catch (SQLException e) {
+                System.out.println("Error al obtener datos: " + e.getMessage());
+            }
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,6 +78,8 @@ public class AgregarTaller extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaAspirantes = new javax.swing.JTable();
         top = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
@@ -48,7 +90,6 @@ public class AgregarTaller extends javax.swing.JFrame {
         label1.setText("label1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(13, 33, 57));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         background.setBackground(new java.awt.Color(13, 33, 57));
@@ -82,44 +123,54 @@ public class AgregarTaller extends javax.swing.JFrame {
         jLabel10.setText("CRUZ ROJA");
         top2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
 
-        jButton9.setBackground(new java.awt.Color(153, 0, 0));
+        jButton9.setBackground(new java.awt.Color(255, 51, 51));
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("TALLERES");
         top2.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 130, 60));
 
-        jButton10.setBackground(new java.awt.Color(255, 51, 51));
+        jButton10.setBackground(new java.awt.Color(153, 0, 0));
         jButton10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton10.setForeground(new java.awt.Color(255, 255, 255));
         jButton10.setText("ASPIRANTE");
         top2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 130, 60));
 
         jButton11.setBackground(new java.awt.Color(255, 51, 51));
         jButton11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 255, 255));
-        jButton11.setText("INFORMES");
+        jButton11.setText("SALIR");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
             }
         });
-        top2.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 130, 60));
+        top2.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 130, 60));
 
         jButton12.setBackground(new java.awt.Color(255, 51, 51));
         jButton12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton12.setForeground(new java.awt.Color(255, 255, 255));
-        jButton12.setText("SALIR");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
-        top2.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 130, 60));
+        jButton12.setText("INFORMES");
+        top2.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 130, 60));
 
         background1.add(top2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 500));
 
         top1.add(background1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         background.add(top1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 500));
+
+        tablaAspirantes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaAspirantes);
+
+        background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 620, 370));
 
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, -1));
 
@@ -166,12 +217,9 @@ public class AgregarTaller extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
+        // SALIR DEL PROGRAMA
+        System.exit(0);
     }//GEN-LAST:event_jButton11ActionPerformed
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,26 +238,14 @@ public class AgregarTaller extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarTaller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaAspirante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarTaller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaAspirante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarTaller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaAspirante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarTaller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaAspirante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -218,7 +254,7 @@ public class AgregarTaller extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AgregarTaller().setVisible(true);
+                new VistaAspirante().setVisible(true);
             }
         });
     }
@@ -238,7 +274,9 @@ public class AgregarTaller extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
+    private javax.swing.JTable tablaAspirantes;
     private javax.swing.JPanel top;
     private javax.swing.JPanel top1;
     private javax.swing.JPanel top2;

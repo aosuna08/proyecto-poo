@@ -30,7 +30,8 @@ public class VistaAspirante extends javax.swing.JFrame {
 
         tablaAspirantes.setModel(modelo);
 
-        Connection conn = Conexion.getConnection();
+        Conexion con = new Conexion();
+        Connection conn = con.ConectarBD();
         if (conn != null) {
             try {
                 Statement stmt = conn.createStatement();
@@ -136,7 +137,7 @@ public class VistaAspirante extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("CRUZ ROJA");
-        top2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
+        top2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
         jButton9.setBackground(new java.awt.Color(255, 51, 51));
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -185,9 +186,9 @@ public class VistaAspirante extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaAspirantes);
 
-        background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 620, 370));
+        background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 1200, 490));
 
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, -1));
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1430, 580));
 
         top.setBackground(new java.awt.Color(16, 40, 68));
         top.setForeground(new java.awt.Color(16, 40, 68));

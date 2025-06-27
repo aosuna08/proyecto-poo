@@ -2,6 +2,7 @@ package GUI;
 
 import App.Conexion;
 import java.sql.*;
+import javax.swing.JCheckBox;
 import javax.swing.table.DefaultTableModel;
 
 public class VistaAspirante extends javax.swing.JFrame {
@@ -15,7 +16,7 @@ public class VistaAspirante extends javax.swing.JFrame {
 
     // LOGICA PARA MOSTRAR TABLA ASPIRANTE, * NO MODIFICAR *
     // FALTA MOSTRAR NOMBRE DE SECCION Y NIVEL
-    private void mostrarAspirantes() {
+    public void mostrarAspirantes() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("NO. INTERNO JUVENTUD");
         modelo.addColumn("APELLIDO PATERNO");
@@ -27,8 +28,15 @@ public class VistaAspirante extends javax.swing.JFrame {
         // modelo.addColumn("FOTO");
         modelo.addColumn("NIVEL");
         modelo.addColumn("SECCION");
-
+        modelo.addColumn("EDITAR");
+        modelo.addColumn("ELIMINAR");
+        
         tablaAspirantes.setModel(modelo);
+        tablaAspirantes.getColumn("EDITAR").setCellRenderer(new ButtonRenderer());
+        tablaAspirantes.getColumn("EDITAR").setCellEditor(new ButtonEditor(new JCheckBox(), this, "editar"));
+
+        tablaAspirantes.getColumn("ELIMINAR").setCellRenderer(new ButtonRenderer());
+        tablaAspirantes.getColumn("ELIMINAR").setCellEditor(new ButtonEditor(new JCheckBox(), this, "eliminar"));
 
         Conexion con = new Conexion();
         Connection conn = con.ConectarBD();
@@ -64,6 +72,8 @@ public class VistaAspirante extends javax.swing.JFrame {
                     //  rs.getString("foto"),
                         rs.getString("categoriaNivel"),
                         rs.getString("categoriaSeccion"),
+                        "EDITAR",
+                        "ELIMINAR"
                     });
                 }
 
@@ -185,6 +195,11 @@ public class VistaAspirante extends javax.swing.JFrame {
         background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 1200, 420));
 
         BtnCreate.setText("+");
+        BtnCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCreateActionPerformed(evt);
+            }
+        });
         background.add(BtnCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(1307, 47, 60, 50));
 
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1430, 580));
@@ -209,6 +224,10 @@ public class VistaAspirante extends javax.swing.JFrame {
         // SALIR DEL PROGRAMA
         System.exit(0);
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void BtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCreateActionPerformed
+        new VistaAgregarAspirante(this).setVisible(true);
+    }//GEN-LAST:event_BtnCreateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,7 +281,7 @@ public class VistaAspirante extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
-    private javax.swing.JTable tablaAspirantes;
+    public javax.swing.JTable tablaAspirantes;
     private javax.swing.JPanel top1;
     private javax.swing.JPanel top2;
     // End of variables declaration//GEN-END:variables

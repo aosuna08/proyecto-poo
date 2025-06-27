@@ -1,7 +1,11 @@
 package GUI;
 
-public class VistaAgregarAspirante extends javax.swing.JFrame {
-    public VistaAgregarAspirante() {
+import App.Conexion;
+import java.sql.*;
+import javax.swing.JOptionPane;
+
+public class VistaEditarAspirante extends javax.swing.JFrame {
+    public VistaEditarAspirante() {
         initComponents();
     }
     @SuppressWarnings("unchecked")
@@ -28,12 +32,12 @@ public class VistaAgregarAspirante extends javax.swing.JFrame {
         BtnEditar = new javax.swing.JButton();
         TfApellidoP = new javax.swing.JTextField();
         TfCURP = new javax.swing.JTextField();
-        TfSeccion = new javax.swing.JTextField();
         TfApellidoM = new javax.swing.JTextField();
-        TfNivel = new javax.swing.JTextField();
         TfFechaIn = new javax.swing.JTextField();
         TfNoInJuv = new javax.swing.JTextField();
         TfFechaNacimiento = new javax.swing.JTextField();
+        CbSeccion = new javax.swing.JComboBox<>();
+        CbNivel = new javax.swing.JComboBox<>();
 
         label1.setText("label1");
 
@@ -48,7 +52,7 @@ public class VistaAgregarAspirante extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("AGREGAR ASPIRANTE");
+        jLabel1.setText("EDITAR ASPIRANTE");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 80));
@@ -93,6 +97,11 @@ public class VistaAgregarAspirante extends javax.swing.JFrame {
 
         BtnCancelar.setFont(new java.awt.Font("Roboto", 2, 14)); // NOI18N
         BtnCancelar.setText("CANCELAR");
+        BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCancelarActionPerformed(evt);
+            }
+        });
         getContentPane().add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, -1, -1));
 
         BtnGuardar.setFont(new java.awt.Font("Roboto", 2, 14)); // NOI18N
@@ -160,16 +169,6 @@ public class VistaAgregarAspirante extends javax.swing.JFrame {
         });
         getContentPane().add(TfCURP, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 119, -1));
 
-        TfSeccion.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        TfSeccion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TfSeccion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        TfSeccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TfSeccionActionPerformed(evt);
-            }
-        });
-        getContentPane().add(TfSeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 119, -1));
-
         TfApellidoM.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         TfApellidoM.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TfApellidoM.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -179,16 +178,6 @@ public class VistaAgregarAspirante extends javax.swing.JFrame {
             }
         });
         getContentPane().add(TfApellidoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 119, -1));
-
-        TfNivel.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        TfNivel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TfNivel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        TfNivel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TfNivelActionPerformed(evt);
-            }
-        });
-        getContentPane().add(TfNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 119, -1));
 
         TfFechaIn.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         TfFechaIn.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -220,9 +209,73 @@ public class VistaAgregarAspirante extends javax.swing.JFrame {
         });
         getContentPane().add(TfFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, 119, -1));
 
+        CbSeccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "13-16", "17+" }));
+        getContentPane().add(CbSeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 120, -1));
+
+        CbNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ASPIRANTE", "BASICO", "MONITOR", "TECNICO" }));
+        getContentPane().add(CbNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 120, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private String numeroInternoActual;
 
+    public VistaEditarAspirante(String numInternoJuventud, VistaAspirante vistaPadre) {
+        initComponents();
+        this.numeroInternoActual = numInternoJuventud;
+        this.vistaPadre = vistaPadre;
+        cargarDatos(numInternoJuventud);
+    }
+    
+    private void cargarDatos(String numeroInterno) {
+        Conexion con = new Conexion();
+        Connection conn = con.ConectarBD();
+
+        if (conn == null) {
+            JOptionPane.showMessageDialog(this, "No se pudo conectar a la base de datos.");
+            return;
+        }
+
+        try {
+            String sql = "SELECT a.*, n.categoria AS nivelCategoria, s.categoria AS seccionCategoria " +
+                         "FROM aspirante a " +
+                         "JOIN nivel n ON a.Nivel_idNivel = n.idNivel " +
+                         "JOIN seccion s ON a.Seccion_idSeccion = s.idSeccion " +
+                         "WHERE a.numeroInternoJuventud = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, numeroInterno);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                TfNombre.setText(rs.getString("nombre"));
+                TfApellidoP.setText(rs.getString("apellidoPaterno"));
+                TfApellidoM.setText(rs.getString("apellidoMaterno"));
+                TfCURP.setText(rs.getString("CURP"));
+                TfNoInJuv.setText(rs.getString("numeroInternoJuventud"));
+                TfFechaNacimiento.setText(rs.getString("fechaNacimiento"));
+                TfFechaIn.setText(rs.getString("fechaIngreso"));
+
+                // Selecciona el valor en los combos
+                CbNivel.setSelectedItem(rs.getString("nivelCategoria"));
+                CbSeccion.setSelectedItem(rs.getString("seccionCategoria"));
+            } else {
+                JOptionPane.showMessageDialog(this, "Aspirante no encontrado.");
+            }
+
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar datos: " + e.getMessage());
+        }
+    }
+    
+    private VistaAspirante vistaPadre;
+
+    public VistaEditarAspirante(VistaAspirante vistaPadre) {
+        initComponents();
+        this.vistaPadre = vistaPadre;
+    }
+    
     private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnEditarActionPerformed
@@ -239,17 +292,9 @@ public class VistaAgregarAspirante extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TfFechaInActionPerformed
 
-    private void TfNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TfNivelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TfNivelActionPerformed
-
     private void TfApellidoMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TfApellidoMActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TfApellidoMActionPerformed
-
-    private void TfSeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TfSeccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TfSeccionActionPerformed
 
     private void TfCURPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TfCURPActionPerformed
         // TODO add your handling code here:
@@ -264,12 +309,85 @@ public class VistaAgregarAspirante extends javax.swing.JFrame {
     }//GEN-LAST:event_TfNombreActionPerformed
 
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
-       
+        String nombre = TfNombre.getText();
+        String apellidoP = TfApellidoP.getText();
+        String apellidoM = TfApellidoM.getText();
+        String curp = TfCURP.getText();
+        String noJuventud = TfNoInJuv.getText();
+        String fechaNac = TfFechaNacimiento.getText();
+        String fechaIngreso = TfFechaIn.getText();
+        String seccionSeleccionada = CbSeccion.getSelectedItem().toString();
+        String nivelSeleccionado = CbNivel.getSelectedItem().toString();
+
+        int idSeccion, idNivel;
+
+        if (nombre.isEmpty() || apellidoP.isEmpty() || curp.isEmpty() || noJuventud.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Completa todos los campos obligatorios.");
+            return;
+        }
+
+        Conexion con = new Conexion();
+        Connection conn = con.ConectarBD();
+
+        if (conn == null) {
+            JOptionPane.showMessageDialog(null, "Error: No se pudo conectar a la base de datos.");
+            return;
+        }
+
+        try {
+            // Obtener idSeccion
+            PreparedStatement psSeccion = conn.prepareStatement("SELECT idSeccion FROM seccion WHERE categoria = ?");
+            psSeccion.setString(1, seccionSeleccionada);
+            ResultSet rsSeccion = psSeccion.executeQuery();
+            idSeccion = rsSeccion.next() ? rsSeccion.getInt("idSeccion") : -1;
+
+            // Obtener idNivel
+            PreparedStatement psNivel = conn.prepareStatement("SELECT idNivel FROM nivel WHERE categoria = ?");
+            psNivel.setString(1, nivelSeleccionado);
+            ResultSet rsNivel = psNivel.executeQuery();
+            idNivel = rsNivel.next() ? rsNivel.getInt("idNivel") : -1;
+
+            if (idSeccion == -1 || idNivel == -1) {
+                JOptionPane.showMessageDialog(null, "Nivel o Sección no válidos.");
+                return;
+            }
+
+            // UPDATE
+            String sql = "UPDATE aspirante SET nombre = ?, apellidoPaterno = ?, apellidoMaterno = ?, CURP = ?, "
+                       + "Seccion_idSeccion = ?, Nivel_idNivel = ?, fechaNacimiento = ?, fechaIngreso = ? "
+                       + "WHERE numeroInternoJuventud = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, nombre);
+            ps.setString(2, apellidoP);
+            ps.setString(3, apellidoM);
+            ps.setString(4, curp);
+            ps.setInt(5, idSeccion);
+            ps.setInt(6, idNivel);
+            ps.setString(7, fechaNac);
+            ps.setString(8, fechaIngreso);
+            ps.setString(9, noJuventud); // clave primaria
+
+            int filas = ps.executeUpdate();
+            if (filas > 0) {
+                JOptionPane.showMessageDialog(this, "Aspirante actualizado correctamente.");
+                vistaPadre.mostrarAspirantes();
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo actualizar el registro.");
+            }
+
+            ps.close();
+            conn.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar: " + e.getMessage());
+        }
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_BtnCancelarActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -284,14 +402,30 @@ public class VistaAgregarAspirante extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaAgregarAspirante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaEditarAspirante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaAgregarAspirante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaEditarAspirante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaAgregarAspirante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaEditarAspirante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaAgregarAspirante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaEditarAspirante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -312,7 +446,7 @@ public class VistaAgregarAspirante extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaAgregarAspirante().setVisible(true);
+                new VistaEditarAspirante().setVisible(true);
             }
         });
     }
@@ -321,15 +455,15 @@ public class VistaAgregarAspirante extends javax.swing.JFrame {
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnEditar;
     private javax.swing.JButton BtnGuardar;
+    private javax.swing.JComboBox<String> CbNivel;
+    private javax.swing.JComboBox<String> CbSeccion;
     private javax.swing.JTextField TfApellidoM;
     private javax.swing.JTextField TfApellidoP;
     private javax.swing.JTextField TfCURP;
     private javax.swing.JTextField TfFechaIn;
     private javax.swing.JTextField TfFechaNacimiento;
-    private javax.swing.JTextField TfNivel;
     private javax.swing.JTextField TfNoInJuv;
     private javax.swing.JTextField TfNombre;
-    private javax.swing.JTextField TfSeccion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

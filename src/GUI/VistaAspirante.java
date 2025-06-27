@@ -96,11 +96,7 @@ public class VistaAspirante extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaAspirantes = new javax.swing.JTable();
-        top = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        BtnCreate = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
 
         label1.setText("label1");
@@ -186,35 +182,12 @@ public class VistaAspirante extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaAspirantes);
 
-        background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 1200, 490));
+        background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 1200, 420));
+
+        BtnCreate.setText("+");
+        background.add(BtnCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(1307, 47, 60, 50));
 
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1430, 580));
-
-        top.setBackground(new java.awt.Color(16, 40, 68));
-        top.setForeground(new java.awt.Color(16, 40, 68));
-        top.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("MENÚ");
-        top.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(349, 21, -1, -1));
-
-        jButton3.setBackground(new java.awt.Color(228, 17, 26));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton3.setText("TALLERES");
-        top.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 130, 60));
-
-        jButton4.setBackground(new java.awt.Color(228, 17, 26));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton4.setText("MODIFICAR");
-        top.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 130, 60));
-
-        jButton5.setBackground(new java.awt.Color(228, 17, 26));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton5.setText("ASPIRANTE");
-        top.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 130, 60));
-
-        getContentPane().add(top, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 500));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -276,24 +249,20 @@ public class VistaAspirante extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCreate;
     private javax.swing.JPanel background;
     private javax.swing.JPanel background1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
     private javax.swing.JTable tablaAspirantes;
-    private javax.swing.JPanel top;
     private javax.swing.JPanel top1;
     private javax.swing.JPanel top2;
     // End of variables declaration//GEN-END:variables

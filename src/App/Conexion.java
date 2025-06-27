@@ -21,13 +21,4 @@ public class Conexion {
         return cn;
         
     }
-   /* public static Connection getConnection() {
-        try {
-            return DriverManager.getConnection(url, usuario, contrasenia);
-        } catch (SQLException e) {
-            System.out.println("Error al conectar: " + e.getMessage());
-            return null;
-        }
-    }*/
 }
-

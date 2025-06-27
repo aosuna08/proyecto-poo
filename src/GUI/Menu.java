@@ -139,8 +139,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        this.dispose();
-        new VistaTaller().setVisible(true);
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     /**

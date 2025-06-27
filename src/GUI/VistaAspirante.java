@@ -32,6 +32,7 @@ public class VistaAspirante extends javax.swing.JFrame {
         modelo.addColumn("ELIMINAR");
         
         tablaAspirantes.setModel(modelo);
+        
         tablaAspirantes.getColumn("EDITAR").setCellRenderer(new ButtonRenderer());
         tablaAspirantes.getColumn("EDITAR").setCellEditor(new ButtonEditor(new JCheckBox(), this, "editar"));
 
